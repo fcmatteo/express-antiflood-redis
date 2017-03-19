@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "expect": true
+  },
+  "rules": {
+    "no-unused-expressions": 0,
+    "no-await-in-loop": 0,
+    "global-require": 0,
+    "no-console": 0,
+    "import/no-dynamic-require": 0
+  }
+}
