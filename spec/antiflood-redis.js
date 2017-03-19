@@ -1,13 +1,12 @@
 import 'babel-polyfill'
 import chai from 'chai'
-import bluebird from 'bluebird'
 import RedisStore from '../src/main'
 
 const should = chai.should()
 
 const randomString = () => String(Math.random())
 
-const timeout = (time) =>
+const timeout = time =>
   new Promise(resolve =>
     setTimeout(resolve, time),
   )
