@@ -2,9 +2,10 @@
   "name": "express-antiflood-redis",
   "version": "1.0.0",
   "description": "A Redis store for express-antiflood",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register ./spec/antiflood-redis.js",
+    "build": "rm -rf dist && babel -D src/ -d dist --no-comments",
     "redis": "docker-compose up redis"
   },
   "repository": {
@@ -17,7 +18,7 @@
     "redis",
     "store"
   ],
-  "author": "Facundo Matteo <facundo.matteo@gmail.com>",
+  "author": "Facundo Matteo <facumatteo@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fcmatteo/express-antiflood-redis/issues"
@@ -28,6 +29,7 @@
     "redis": "2.7.1"
   },
   "devDependencies": {
+    "babel-cli": "6.24.0",
     "babel-core": "6.24.0",
     "babel-polyfill": "6.23.0",
     "babel-preset-latest": "6.24.0",
@@ -35,6 +37,6 @@
     "eslint": "3.18.0",
     "eslint-config-airbnb-base": "11.1.1",
     "eslint-plugin-import": "2.2.0",
-    "mocha": "^3.2.0"
+    "mocha": "3.2.0"
   }
 }
