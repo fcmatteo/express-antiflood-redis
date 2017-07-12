@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import chai from 'chai'
+import redis from 'redis'
 import RedisStore from '../src/main'
 
 const should = chai.should()
@@ -23,6 +24,33 @@ describe('RedisStore', () => {
   it('should not exist the element if the key is not in the store', async () => {
     const obj = await store.get('undefinedUser')
     should.not.exist(obj)
+  })
+
+  it('should return the count of the key saved and later be deleted', async () => {
+    const expireTime = 1000
+    const nextDate = (new Date()).getTime() + expireTime
+    const username = randomString()
+    await store.set(username, 1, expireTime)
+    const obj = await store.get(username)
+    obj.should.be.an('object')
+    obj.count.should.be.a('number')
+    obj.count.should.be.equal(1)
+    obj.nextDate.should.be.a('number')
+    obj.nextDate.should.be.at.least(nextDate)
+    // At normal conditions it should be almost the same
+    obj.nextDate.should.be.at.most(nextDate + 500)
+
+    await timeout(1000)
+    const deleted = await store.get(username)
+    should.not.exist(deleted)
+  })
+})
+
+describe('Using a client previously defined', () => {
+  const redisConnection = redis.createClient({ host: 'localhost', port: 6380 })
+  let store
+  before(() => {
+    store = RedisStore({ client: redisConnection })
   })
 
   it('should return the count of the key saved and later be deleted', async () => {

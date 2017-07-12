@@ -5,7 +5,7 @@ bluebird.promisifyAll(redis.RedisClient.prototype)
 bluebird.promisifyAll(redis.Multi.prototype)
 
 export default function RedisStore(options) {
-  const client = redis.createClient(options)
+  const client = options.client || redis.createClient(options)
   return {
     async get(key) {
       const elem = await client.getAsync(key)
