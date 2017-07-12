@@ -19,8 +19,7 @@ export default function RedisStore(options) {
       }
     },
     async set(key, count, expire) {
-      await client.setAsync(key, String(count))
-      await client.pexpireAsync(key, expire)
+      await client.setAsync(key, String(count), 'PX', expire)
     },
   }
 }
