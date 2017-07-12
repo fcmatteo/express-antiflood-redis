@@ -8,11 +8,12 @@ import RedisStore from 'express-antiflood-redis'
 
 const store = RedisStore({
   host: 'localhost',
-  port: 6379
+  port: 6379,
 })
 
 const middleware = antiflood(store)
 ```
+You can check the example in this repo to watch it working.
 
 # Options
 The options are directly passed to [node_redis](https://github.com/NodeRedis/node_redis), so if no options are passed it will use defaults.
