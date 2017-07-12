@@ -1,6 +1,6 @@
 {
   "name": "express-antiflood-redis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Redis store for express-antiflood",
   "main": "dist/main.js",
   "scripts": {
